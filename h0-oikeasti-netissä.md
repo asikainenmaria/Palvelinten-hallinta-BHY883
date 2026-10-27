@@ -42,8 +42,13 @@ Sallin HTTP-liikenteen palomuurissa:
 Testasin:
 -sudo systemctl status apache2
 -sudo systemctl enable apache2
+<img width="1154" height="728" alt="image" src="https://github.com/user-attachments/assets/14cbb876-0a1b-4102-8e51-3f96e032427a" />
+
 
 Testasin web-palvelinta selaimesa avaamalla osoitteen http://87.58.151.93.
 Kun sivu näkyi selaimessa, pystyin varmistamaan, että palvelin vastasi verkkopyyntöihin.
+
+<img width="2560" height="1664" alt="image" src="https://github.com/user-attachments/assets/26772f27-cee8-4664-9b4a-2e0381440c50" />
+
 
 
