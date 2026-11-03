@@ -23,6 +23,17 @@ salasanaa oikein jokaisen git push- tai ansible-playbook -komennon yhteydessä.
 
 - Karvinen 2026: Hello Ansible https://terokarvinen.com/hello-ansible/
 
+<img width="487" height="123" alt="Näyttökuva 2026-11-03 kello 14 21 12" src="https://github.com/user-attachments/assets/39c4a96d-15af-4d21-b522-c9afcdb24abc" />
+<img width="636" height="178" alt="Näyttökuva 2026-11-03 kello 14 23 39" src="https://github.com/user-attachments/assets/5544d3d4-177b-4c52-9d4f-e177c009e8e4" />
+<img width="636" height="156" alt="Näyttökuva 2026-11-03 kello 14 24 23" src="https://github.com/user-attachments/assets/49c59943-f547-43db-b1b8-9fc63d5b74a8" />
+<img width="638" height="102" alt="Näyttökuva 2026-11-03 kello 14 25 22" src="https://github.com/user-attachments/assets/10c23463-a100-4322-87ba-d2b8e08916ac" />
+<img width="633" height="440" alt="Näyttökuva 2026-11-03 kello 14 20 10" src="https://github.com/user-attachments/assets/9645e806-4d01-408e-a085-fc64557b75c8" />
+
+
+
+
+
+
 
   
 
