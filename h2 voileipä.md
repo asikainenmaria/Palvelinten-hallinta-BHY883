@@ -63,6 +63,9 @@ sudo -n whoami
 
 Tulokseksi tuli root, joten salasanaton sudo toimii.
 
+<img width="460" height="156" alt="image" src="https://github.com/user-attachments/assets/31dea0eb-adaa-4222-9ca8-8f25bafaec11" />
+
+
 b) 
 
 -Loin Ansiblella käyttäjän nimeltä antero.
@@ -75,9 +78,12 @@ b)
 
 - Testasin yhteyden ja varmistin, että käyttäjä pystyy myös käyttämään sudoa ilman salasanaa.
 
-<img width="1080" height="430" alt="image" src="https://github.com/user-attachments/assets/ebe93f35-38bc-4e22-9524-784337b05976" />
+- <img width="510" height="566" alt="image" src="https://github.com/user-attachments/assets/456de870-09d2-4ce5-9378-fe280176bf16" />
+
+
 
 c) 
+
 - Käytin tähän Ansible-moduulia ansible.builtin.apt.
 - tree näyttää hakemistojen ja tiedostojen rakenteen puumaisessa muodossa.
 - curl on komentorivityökalu, jolla voidaan hakea tietoa verkkopalvelimilta.
