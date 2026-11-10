@@ -113,7 +113,7 @@ sudo ls -l /home/antero/harjoitus.txt
 
 e) 
 
-- käytin ansible.builtin.group-moduulia sudoless-ryhmän luomiseen.
+- käytin ansible.builtin.group-moduulia sudoless-ryhmän luomiseen. (tein tämän kohdan kokonaan tekoälyn avulla)
 
 - name: Create sudoless group
   ansible.builtin.group:
