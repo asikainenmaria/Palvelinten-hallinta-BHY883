@@ -111,7 +111,10 @@ sudo ls -l /home/antero/harjoitus.txt
 <img width="1266" height="374" alt="image" src="https://github.com/user-attachments/assets/6d60ed2f-3e76-476d-88ce-017cef13c9b8" />
 
 
-e) käytin ansible.builtin.group-moduulia sudoless-ryhmän luomiseen.
+e) 
+
+- käytin ansible.builtin.group-moduulia sudoless-ryhmän luomiseen.
+
 - name: Create sudoless group
   ansible.builtin.group:
     name: sudoless
