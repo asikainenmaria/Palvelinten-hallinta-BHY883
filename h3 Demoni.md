@@ -36,7 +36,7 @@ huomio: enabled ja state tarkoittavat eri asioita: enabled määrittää automaa
 
 ## y)  
 
-It Will Never Be the Year of the Linux Desktop: https://news.ycombinator.com/item?id=48323920&utm_source=chatgpt.com
+It Will Never Be the Year of the Linux Desktop: https://news.ycombinator.com/item?id=48323920
 
 - Artikkeli käsittelee sitä, miksi Linux ei ole saavuttanut yhtä suurta suosiota työpöytäkäyttöjärjestelmänä kuin Windows.
 - Yksi keskeinen syy on yritysten tarve hallita tietokoneita ja käyttäjiä keskitetysti. Windowsissa tämä onnistuu esimerkiksi Active Directoryn ja Group Policyn avulla.
@@ -49,6 +49,22 @@ It Will Never Be the Year of the Linux Desktop: https://news.ycombinator.com/ite
 
 ## a)
 
+- Asensin Apache2-verkkopalvelimen Debian-palvelimelle komentorivin kautta.
+
+- Päivitin ensin pakettiluettelon ja asensin Apachen komennoilla:
+
+- sudo apt update
+- sudo apt install apache2 -y
+
+- Tarkistin, että Apache-palvelu käynnistyi onnistuneesti komennolla: systemctl status apache2
+
+- Tämän jälkeen loin kotihakemistooni publicsite-kansion ja sinne index.html-tiedoston, johon tein oman verkkosivun.
+
+- Määritin Apachen käyttämään tätä kansiota verkkosivun juurihakemistona muokkaamalla tiedostoa /etc/apache2/sites-available/000-default.conf.
+
+- Annoin tarvittavat luku- ja suoritusoikeudet, jotta Apache pystyy lukemaan verkkosivun tiedostot ja tavallinen käyttäjä pystyy muokkaamaan niitä ilman pääkäyttäjän oikeuksia.
+
+
 <img width="1094" height="476" alt="image" src="https://github.com/user-attachments/assets/6a14a7aa-083a-481e-b280-6664c2bee88a" />
 
 <img width="1132" height="548" alt="image" src="https://github.com/user-attachments/assets/54923e7a-2c55-4b84-b059-c1a65791dcf1" />
@@ -58,6 +74,12 @@ It Will Never Be the Year of the Linux Desktop: https://news.ycombinator.com/ite
 <img width="1176" height="940" alt="image" src="https://github.com/user-attachments/assets/0bc9e6f3-62fb-4b32-9591-7e1078b64cf3" />
 
 <img width="1898" height="312" alt="image" src="https://github.com/user-attachments/assets/be265acd-37b0-4b72-b064-7f5cec32f7bc" />
+
+- Lopuksi käynnistin Apache-palvelun uudelleen ja testasin verkkosivun toiminnan komennolla:
+
+- curl http://localhost
+
+- Testaus onnistui, ja oma verkkosivu näkyi oikein. Lisäksi kokeilin muokata HTML-tiedostoa tavallisena käyttäjänä ilman sudo-komentoa. Muutokset näkyivät verkkosivulla onnistuneesti. 
 
 <img width="1238" height="692" alt="image" src="https://github.com/user-attachments/assets/e420a17b-57ec-4fcb-b907-212f50cd2230" />
 
@@ -84,15 +106,68 @@ Muokkasin tekstiä normi käyttäjänä, muutokset näkyy heti verkkosivulla ilm
 
 ## c) 
 
-- Loin projektihakemiston: mkdir ~/ansible-nginx
-  
- <img width="441" height="43" alt="Näyttökuva 2026-11-17 kello 11 58 44" src="https://github.com/user-attachments/assets/a7649374-39d5-4999-9774-d67ca0333e6a" />
+- Tarkistin Ansible-version: - ansible --version
+
+
 
 - inventaariotiedosto:
 
  <img width="336" height="79" alt="Näyttökuva 2026-11-17 kello 12 01 27" src="https://github.com/user-attachments/assets/08903f60-f707-403d-9213-c55295c22180" />
 
+- Loin projektihakemiston: mkdir ~/ansible-nginx
+  
+ <img width="441" height="43" alt="Näyttökuva 2026-11-17 kello 11 58 44" src="https://github.com/user-attachments/assets/a7649374-39d5-4999-9774-d67ca0333e6a" />
 
-- Nginxin asennus ja palvelun käynnissäolon varmistaminen automatisoitu playbookilla.
+- Ansible-playbook:
+- nano nginx.yml
+
+
+Tiedoston sisältö:
+
+- - name: Asenna ja käynnistä Nginx
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Asenna Nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Varmista, että Nginx on käynnissä
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+
+- Tarkistin playbookin syntaksin.
+ansible-playbook -i inventory.ini nginx.yml --syntax-check
+
+
+-  Suoritin playbookin.
+ansible-playbook -i inventory.ini nginx.yml --ask-become-pass
+
+- Annoin sudo-salasanan, kun sitä kysyttiin.
+
+- Tarkistin lopputuloksen:
+
+Ansible-ajon tulosteessa näkyi:
+localhost : ok=3 changed=0 unreachable=0 failed=0
+
+Tämä tarkoitti, että kaikki tehtävät suoritettiin onnistuneesti ilman virheitä.
+
+- Nginxin asennus ja palvelun käynnissäolon varmistaminen automatisoitu playbookilla. 
 
 <img width="1034" height="517" alt="Näyttökuva 2026-11-17 kello 12 08 06" src="https://github.com/user-attachments/assets/d5cc1bb3-f5db-4aa0-a0ab-9efa56eb0b9d" />
+
+http://87.58.151.93
+
+Lähteet:
+
+https://news.ycombinator.com/item?id=48323920
+
+https://terokarvinen.com/apache-ansible/
+
+https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html
